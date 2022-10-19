@@ -24,8 +24,14 @@ def valor(conteudo):
     return max(lista_pizza), sum(lista_pizza)
 
 def clientes(conteudo):
+    melhor_cliente = ''
+    maior_pedido = 0
     for pedido in conteudo['orders']:
-        nome = pedido['client']['name']
+        pedido_price = float(pedido['price'])
+        if pedido_price > maior_pedido:
+            maior_pedido = pedido_price
+            melhor_cliente = pedido['client']['name']
+    return melhor_cliente
 
 def entregas(conteudo):
     total_entregas = 0
@@ -50,6 +56,7 @@ def tamanho(conteudo):
     tamanhos['grandes'] = grandes
     tamanhos['medias'] = medias
     return tamanhos
+
         
 
   

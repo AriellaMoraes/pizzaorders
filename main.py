@@ -25,6 +25,7 @@ resumo = {
     'total de pizzas': total,
     'Pizza mais cara': f'R$ {cara:.2f}',
     'Faturamento do dia': f'R$ {lucro:.2f}',
+    'Melhor cliente do dia': melhor_cliente,
     'Entregas do dia': total_entregas,
     'Tamanhos': tamanhos
 }

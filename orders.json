@@ -2,10 +2,24 @@
     "orders": [
         {
             "size": "medium",
-            "price": 15.67,
+            "price": 58.67,
             "toppings": [
                 "mushrooms",
                 "pepperoni",
+                "basil"
+            ],
+            "extra_cheese": false,
+            "delivery": true,
+            "client": {
+                "name": "Jane Doe",
+                "phone": null,
+                "email": "janedoe@email.com"
+            }
+        },
+        {
+            "size": "large",
+            "price": 20.80,
+            "toppings": [
                 "basil"
             ],
             "extra_cheese": false,

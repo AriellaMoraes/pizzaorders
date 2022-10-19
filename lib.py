@@ -27,6 +27,30 @@ def clientes(conteudo):
     for pedido in conteudo['orders']:
         nome = pedido['client']['name']
 
+def entregas(conteudo):
+    total_entregas = 0
+    for pedido in conteudo['orders']:
+        if pedido['delivery']:
+            total_entregas += 1
+    return total_entregas
 
-    
+def tamanho(conteudo):
+    pequenas = 0
+    medias = 0
+    grandes = 0
+    tamanhos = {}
+    for pedido in conteudo['orders']:
+        if pedido['size'] == 'large':
+            grandes += 1
+        elif pedido['size'] == 'medium':
+            medias += 1
+        elif pedido['size'] == 'small':
+            pequenas += 1
+    tamanhos['pequenas'] = pequenas
+    tamanhos['grandes'] = grandes
+    tamanhos['medias'] = medias
+    return tamanhos
+        
+
+  
 

@@ -1,6 +1,7 @@
 {
     "orders": [
         {
+            "id": 1,
             "size": "medium",
             "price": 58.67,
             "toppings": [
@@ -17,6 +18,7 @@
             }
         },
         {
+            "id": 2,
             "size": "large",
             "price": 20.80,
             "toppings": [
@@ -31,6 +33,7 @@
             }
         },
         {
+            "id": 3,
             "size": "large",
             "price": 20.09,
             "toppings": [
@@ -45,8 +48,8 @@
             }
         },
         {
+            "id": 4,
             "size": "small",
-            "price": 6.54,
             "toppings": null,
             "extra_cheese": true,
             "delivery": false,
@@ -57,6 +60,7 @@
             }
         },
         {
+            "id": 5,
             "size": "small",
             "price": 8.90,
             "toppings": [
@@ -72,12 +76,28 @@
             }
         },
         {
+            "id": 6,
             "size": "large",
             "price": "50.90",
             "toppings": [
                 "mushrooms",
                 "pepperoni",
                 "basil",
+                "basil 2"
+            ],
+            "extra_cheese": true,
+            "delivery": true,
+            "client": {
+                "name": "Dana",
+                "phone": null,
+                "email": "janedoe@email.com"
+            }
+        },
+        {
+            "id": 7,
+            "price": "12.90",
+            "toppings": [
+                "mushrooms",
                 "basil 2"
             ],
             "extra_cheese": true,

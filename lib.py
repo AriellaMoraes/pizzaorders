@@ -1,5 +1,4 @@
 import json
-from textwrap import indent
 
 def json_to_dict(nome):
     # Função que abre o arquivo:
@@ -17,21 +16,35 @@ def saida_final(saida, resumo):
         json.dump(resumo, file, indent=4)
 
 def valor(conteudo):
+    erro = []
     lista_pizza = []
     for pedido in conteudo['orders']:
-        lista_pizza.append(float(pedido['price']))
-
-    return max(lista_pizza), sum(lista_pizza)
+        try:
+            lista_pizza.append(float(pedido['price']))
+        except KeyError as e:
+            erro.append(f'No pedido {pedido["id"]} esta faltando {e}')
+    return max(lista_pizza), sum(lista_pizza), erro
 
 def clientes(conteudo):
+    total_gastos = {}
     melhor_cliente = ''
     maior_pedido = 0
+    erro = []
     for pedido in conteudo['orders']:
-        pedido_price = float(pedido['price'])
-        if pedido_price > maior_pedido:
-            maior_pedido = pedido_price
-            melhor_cliente = pedido['client']['name']
-    return melhor_cliente
+        try:
+            nome = pedido['client']['name']
+            pedido_price = float(pedido['price'])
+            if nome in total_gastos.keys():
+                total_gastos[nome] = total_gastos[nome] + pedido_price
+            else:
+                total_gastos[nome] = pedido_price
+        except KeyError as e:
+            erro.append(f'No pedido {pedido["id"]} esta faltando {e}')   
+    for cliente, valor in total_gastos.items():
+        if valor > maior_pedido:
+            maior_pedido = valor
+            melhor_cliente = cliente
+    return [melhor_cliente, total_gastos, erro]
 
 def entregas(conteudo):
     total_entregas = 0
@@ -45,17 +58,22 @@ def tamanho(conteudo):
     medias = 0
     grandes = 0
     tamanhos = {}
+    erro = []
     for pedido in conteudo['orders']:
-        if pedido['size'] == 'large':
-            grandes += 1
-        elif pedido['size'] == 'medium':
-            medias += 1
-        elif pedido['size'] == 'small':
-            pequenas += 1
+        try:
+            if pedido['size'] == 'large':
+                grandes += 1
+            elif pedido['size'] == 'medium':
+                medias += 1
+            elif pedido['size'] == 'small':
+                pequenas += 1
+        except KeyError as e:
+            erro.append(f'No pedido {pedido["id"]} esta faltando {e}')
     tamanhos['pequenas'] = pequenas
     tamanhos['grandes'] = grandes
     tamanhos['medias'] = medias
-    return tamanhos
+    return [tamanhos, erro]
+
 
         
 
